@@ -8,20 +8,23 @@ This project involves developing a product classification model using text data.
 
 # Project Structure
 
+Project Structure
 app/
-  ├── __init__.py
-  ├── main.py  # FastAPI app to handle product classification requests
-  ├── __pycache__/
 
+__init__.py
+main.py: FastAPI app to handle product classification requests
+__pycache__/
 training/
-  ├── baseline_models/  # Contains baseline models
-  ├── mbert_models/  # Best-performing model (mBERT trained on product titles)
-  ├── xlmr_models/  # Other transformer-based models
-  ├── load_data_from_BQ.py  # Script to fetch dataset from BigQuery
 
+baseline_models/: Contains baseline models
+mbert_models/: Best-performing model (mBERT trained on product titles)
+xlmr_models/: Other transformer-based models
+load_data_from_BQ.py: Script to fetch dataset from BigQuery
 .gitignore
+
 README.md
-requirements.txt  # List of dependencies
+
+requirements.txt: List of dependencies
 
 # Data Processing
 
