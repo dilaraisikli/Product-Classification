@@ -32,7 +32,7 @@ requirements.txt: List of dependencies
 
 load_data_from_BQ.py fetches raw product data from BigQuery.
 
-Feature Engineering & Cleaning:
+# Feature Engineering & Cleaning:
 
 # Data preprocessing is performed in data_analysis.ipynb, which includes:
 
@@ -58,7 +58,7 @@ The best-performing model (mBERT) is selected and used in deployment.
 
 # API Deployment
 
-The FastAPI application (app/main.py) provides a POST endpoint for product classification:
+# The FastAPI application (app/main.py) provides a POST endpoint for product classification:
 
 POST /predict
 {
@@ -75,11 +75,11 @@ The API was tested using Postman, and the result successfully shows the predicte
 
 # Requirements & Installation
 
-Install dependencies using:
+# Install dependencies using:
 
 pip install -r requirements.txt
 
-Run the FastAPI application:
+# Run the FastAPI application:
 
 uvicorn app.main:app --reload
 
