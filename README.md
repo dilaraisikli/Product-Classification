@@ -1,57 +1,88 @@
 # DI Interview: Product classifier 
 
-This repository hosts all the necessary elements to complete the following DI exercise:
+#Product Classifier Model Deployment
 
-1. Create a text model to classify products based on their title
-2. Use this model in a REST API, developed in Python
+#Overview
 
-## 1 - Train the model
+This project involves developing a product classification model using text data. The pipeline includes data extraction, feature engineering, model training, evaluation, and API deployment. The best-performing model is integrated into a FastAPI-based application.
 
-Use the Jupyter Notebook `training/training.ipynb`. 
-The training set is located in BigQuery.
-You'll find the necessary starting code to be able to retrieve it in the notebook.
+#Project Structure
 
-The referenced `credentials.json` file will be provided by email by our team and should be put in the `training` folder
+app/
+  ├── __init__.py
+  ├── main.py  # FastAPI app to handle product classification requests
+  ├── __pycache__/
 
-**Goal**: train a model based on the titles and subtitles in the set to match a product type.
+training/
+  ├── baseline_models/  # Contains baseline models
+  ├── mbert_models/  # Best-performing model (mBERT trained on product titles)
+  ├── xlmr_models/  # Other transformer-based models
+  ├── load_data_from_BQ.py  # Script to fetch dataset from BigQuery
 
-## 2 - Build the classifier API
+.gitignore
+README.md
+requirements.txt  # List of dependencies
 
-Once the model trained, use the `app` folder to write the code for the REST API using this model.
+#Data Processing
 
-The API should meet the following contract:
+#Data Extraction:
 
-```bash
-curl -XPOST 'http://localhost:5000/classify' \
--H 'Content-Type: application/json' \
--d '{ "title": "my product title containing aquarelle" }'
-```
+load_data_from_BQ.py fetches raw product data from BigQuery.
 
-and the response should look like this: 
+Feature Engineering & Cleaning:
 
-```json
+#Data preprocessing is performed in data_analysis.ipynb, which includes:
+
+Text cleaning
+
+Feature engineering
+
+Train-test-validation splitting (ensuring consistency across models)
+
+Model Training & Evaluation
+
+Baseline Models: Simple models used as a benchmark.
+
+#Transformer Models:
+
+mbert_models/: Trained using product title text (selected as the best model).
+
+xlmr_models/: Alternative transformer-based models.
+
+All models are trained and evaluated consistently using the same split of train-test-validation data.
+
+The best-performing model (mBERT) is selected and used in deployment.
+
+#API Deployment
+
+The FastAPI application (app/main.py) provides a POST endpoint for product classification:
+
+POST /predict
 {
-    "title": "my product title containing aquarelle",
-    "top_3_results": [
-        {
-            "product_type": "painting",
-            "score": 0.xxxx
-        },
-        {
-            "product_type": "aquarium",
-            "score": 0.xxxx
-        },
-        {
-            "product_type": "diving_suit",
-            "score": 0.xxxx
-        }
-    ],
-    "product_type": "painting"
+    "product_title": "Sample Product Title"
 }
-```
 
-No library is imposed to write the API, choose the one you want.
+The API returns the predicted product class based on the provided title.
 
-## An issue, a question?
+Postman is used to test the API (see attached Postman test results screenshot).
 
-Send us a mail at [gm-data@swissmarketplace.group](mailto:gm-data@swissmarketplace.group)
+#Testing the API
+
+The API was tested using Postman, and the result successfully shows the predicted product class based on title input.
+
+#Requirements & Installation
+
+Install dependencies using:
+
+pip install -r requirements.txt
+
+Run the FastAPI application:
+
+uvicorn app.main:app --reload
+
+#Notes
+
+The project ensures modular development by keeping data processing, model training, and API deployment separate.
+
+The best-performing model (mBERT trained on product titles) is deployed via FastAPI for real-time classification.
+
