@@ -89,3 +89,6 @@ The project ensures modular development by keeping data processing, model traini
 
 The best-performing model (mBERT trained on product titles) is deployed via FastAPI for real-time classification.
 
+![Picture1](https://github.com/user-attachments/assets/44488d25-abde-4438-81de-d75c31720e79)
+
+
