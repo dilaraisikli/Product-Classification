@@ -1,12 +1,12 @@
 # DI Interview: Product classifier 
 
-#Product Classifier Model Deployment
+# Product Classifier Model Deployment
 
-#Overview
+# Overview
 
 This project involves developing a product classification model using text data. The pipeline includes data extraction, feature engineering, model training, evaluation, and API deployment. The best-performing model is integrated into a FastAPI-based application.
 
-#Project Structure
+# Project Structure
 
 app/
   ├── __init__.py
@@ -23,15 +23,15 @@ training/
 README.md
 requirements.txt  # List of dependencies
 
-#Data Processing
+# Data Processing
 
-#Data Extraction:
+# Data Extraction:
 
 load_data_from_BQ.py fetches raw product data from BigQuery.
 
 Feature Engineering & Cleaning:
 
-#Data preprocessing is performed in data_analysis.ipynb, which includes:
+# Data preprocessing is performed in data_analysis.ipynb, which includes:
 
 Text cleaning
 
@@ -43,7 +43,7 @@ Model Training & Evaluation
 
 Baseline Models: Simple models used as a benchmark.
 
-#Transformer Models:
+# Transformer Models:
 
 mbert_models/: Trained using product title text (selected as the best model).
 
@@ -53,7 +53,7 @@ All models are trained and evaluated consistently using the same split of train-
 
 The best-performing model (mBERT) is selected and used in deployment.
 
-#API Deployment
+# API Deployment
 
 The FastAPI application (app/main.py) provides a POST endpoint for product classification:
 
@@ -66,11 +66,11 @@ The API returns the predicted product class based on the provided title.
 
 Postman is used to test the API (see attached Postman test results screenshot).
 
-#Testing the API
+# Testing the API
 
 The API was tested using Postman, and the result successfully shows the predicted product class based on title input.
 
-#Requirements & Installation
+# Requirements & Installation
 
 Install dependencies using:
 
@@ -80,7 +80,7 @@ Run the FastAPI application:
 
 uvicorn app.main:app --reload
 
-#Notes
+# Notes
 
 The project ensures modular development by keeping data processing, model training, and API deployment separate.
 
